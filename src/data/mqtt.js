@@ -9,10 +9,9 @@ const Client = class Client {
 
     this.appId = appId;
     this.ee = new EventEmitter();
-    options.host = host;
     options.username = appId;
     options.password = appAccessKey;
-    this.mqtt = mqtt.connect(options);
+    this.mqtt = mqtt.connect(`mqtts://${host}:8883`, options);
     this.mqtt.on('connect', this._connect.bind(this));
     this.mqtt.on('error', this._error.bind(this));
     this.mqtt.on('message', this._handleMessage.bind(this));
