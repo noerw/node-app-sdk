@@ -11,7 +11,7 @@ const checkStatus = function (response) {
 }
 
 const normalize = function (url = "") {
-  let withProtocol = url.indexOf("://") === -1 ? "https://".concat(url) : url
+  let withProtocol = url.indexOf("://") === -1 ? "http://".concat(url) : url
 
   const u = URL.parse(withProtocol)
   if (!u.port) {
