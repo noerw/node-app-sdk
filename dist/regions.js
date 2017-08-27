@@ -1,13 +1,14 @@
+'use strict';
 
-const regions = [ 'eu', 'asia-se', 'brazil', 'us-west' ].reduce(function (acc, region) {
+var regions = ['eu', 'asia-se', 'brazil', 'us-west'].reduce(function (acc, region) {
   acc[region] = region.concat('.thethings.network');
   return acc;
 }, {});
 
-const ttnSuffix = /\.thethings\.network$/;
+var ttnSuffix = /\.thethings\.network$/;
 
-const validate = function (region) {
-  let reg = region;
+var validate = function validate(region) {
+  var reg = region;
 
   // get the region from regions if it exists
   if (region in regions) {
@@ -19,11 +20,10 @@ const validate = function (region) {
     throw new Error('Invalid The Things Network region \'' + region + '\'');
   }
 
-  return reg
+  return reg;
 };
 
 module.exports = {
   validate: validate,
-  regions: regions,
+  regions: regions
 };
-
