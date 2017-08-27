@@ -34,6 +34,7 @@ declare module 'ttn' {
       decoder: string
       encoder: string
       validator: string
+      [k: string]: string
     }
 
     export interface Device {
@@ -68,7 +69,7 @@ declare module 'ttn' {
       constructor(region: HandlerRegion, appId: string, appAccessKey: string, options?: MQTTOptions)
 
       public on(message: 'error', handler: (err: Error) => void): this
-      public on(message: 'connection', handler: (connack: object) => void): this
+      public on(message: 'connect', handler: (connack: object) => void): this
 
       public on(message: 'message',
                 handler: (deviceId: string, data: IUplinkMessage) => void): this
@@ -85,7 +86,7 @@ declare module 'ttn' {
                 handler: (deviceId: string, data: IActivationMessage | IDownlinkMessage) => void): this
     }
 
-    type MQTTOptions = {
+    interface MQTTOptions {
       ca: Buffer
       protocol?: 'mqtts' | 'mqtt'
     }
@@ -102,6 +103,9 @@ declare module 'ttn' {
       payload_raw: string
       payload_fields?: object
       metadata: Metadata
+      latitude?: number
+      longitude?: number
+      altitude?: number
     }
 
     export interface IActivationMessage {
